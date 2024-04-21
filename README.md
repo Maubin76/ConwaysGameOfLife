@@ -15,3 +15,29 @@ As I chose to use the C language for my app, you can compile with gcc
 gcc ConwaysGameOfLife.c -o ConwaysGameOfLife
 ````
 
+### Random generation
+
+You can launch the program and observe what happens in a grid where random alive cells have been placed. This mode is useful to understand how the game works but you are not likely to observe interesting phenomenon as they are wery rare. You can execute it with this command :
+````bash
+./ConwaysGameOfLife
+````
+
+### Generation from file
+
+You can also launch the program with an input file where alive cells have been place to observe structures. Some of these structures are stored in patterns fodler. To execute it, use the command : 
+````bash
+./ConwaysGameOfLife path/file.txt rate
+````
+I recommand some rate for the give files : 
+````bash
+./ConwaysGameOfLife patterns/oscilator.txt 10
+````
+````bash
+./ConwaysGameOfLife patterns/glider.txt 1
+````
+````bash
+./ConwaysGameOfLife patterns/gliderGun.txt 1
+````
+````bash
+./ConwaysGameOfLife patterns/gliderShuttle.txt 1
+````
