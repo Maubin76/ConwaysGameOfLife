@@ -1,11 +1,22 @@
 #include "ConwaysGameOfLife.h"
 
-void main() {
-    char **board = createBoard(); // Create board with all cells dead
+int main(int argc, char *argv[]) {
 
     system("clear"); // Clear the terminal
-    randomizeBoard(board); // Randomize the board
-    printBoard(board); // Print the board
+    char **board;
+
+    // Check if the user provided a file
+    if(argc==2){
+        char *filename = argv[1];
+        getBoardSize(filename); // Get the size of the board in the file
+        board = readTextFile(filename);
+        printBoard(board); // Print the board
+    } else {
+        getTerminalSize(&BOARD_HEIGHT, &BOARD_WIDTH); // Get the terminal size
+        board = createBoard(); // Create board with all cells dead
+        randomizeBoard(board); // Randomize the board
+        printBoard(board); // Print the board
+    }
 
     while(1){
         sleep(GENERATION_RATE); // Sleep to let the board printed
@@ -88,4 +99,63 @@ int countNeighbors(char **board, int x, int y){
         }
     }
     return count;
+}
+
+void getTerminalSize(int *rows, int *cols) {
+    struct winsize ws; // Struct to store the terminal size
+    ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws); // Get the terminal size
+    *rows = ws.ws_row; 
+    *cols = ws.ws_col;
+}
+
+char** readTextFile(char* filename) {
+    FILE* file = fopen(filename, "r");
+    if (file == NULL) {
+        fprintf(stderr, "Error : An error occured when opening the file %s\n", filename);
+        exit(EXIT_FAILURE);
+    }
+    char** board = (char**)malloc(BOARD_HEIGHT * sizeof(char*));
+    if (board == NULL) {
+        fprintf(stderr, "Error : Memory allocation failed\n");
+        exit(EXIT_FAILURE);
+    }
+    for (int i = 0; i < BOARD_HEIGHT; i++) {
+        board[i] = (char*)malloc(BOARD_WIDTH * sizeof(char));
+        if (board[i] == NULL) {
+            fprintf(stderr, "Error : Memory allocation failed\n");
+            exit(EXIT_FAILURE);
+        }
+    }
+    char c;
+    int i = 0, j = 0;
+    while ((c = fgetc(file)) != EOF) {
+        if (c == '\n') {
+            i++;
+            j = 0;
+        } else if (i < BOARD_HEIGHT && j < BOARD_WIDTH) {
+            board[i][j] = c;
+            j++;
+        }
+    }
+
+    fclose(file);
+    return board;
+}
+
+void getBoardSize(char* filename) {
+    FILE* file = fopen(filename, "r"); // Open the file in read mode
+    if (file == NULL) {
+        fprintf(stderr, "Error : An error occured when opening the file %s\n", filename);
+        exit(EXIT_FAILURE);
+    }
+    char c; // Variable to store the current character
+    while ((c = fgetc(file)) != EOF) { // Browse the file
+        if (c == '\n') { // Check if the character is a new line
+            BOARD_HEIGHT++; // Increment the number of rows
+        } else {
+            if (BOARD_HEIGHT == 0) BOARD_WIDTH++; // Increment the number of columns
+        }
+    }
+    BOARD_HEIGHT++;
+    fclose(file); // Close the file
 }

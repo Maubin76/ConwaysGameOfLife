@@ -4,10 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <sys/ioctl.h>
 
-// These dimensions depend on the terminal size, they are adapted to mine
-#define BOARD_WIDTH 157
-#define BOARD_HEIGHT 47
 // The chance of a cell being alive when randomizing the board
 #define ALIVE_CHANCE 0.1
 // The time between generations in seconds
@@ -15,6 +13,8 @@
 // The characters used to represent the cells
 #define ALIVE 'O'
 #define DEAD '.'
+// Global variables for the board size
+int BOARD_HEIGHT, BOARD_WIDTH;
 
 // Print the board to the terminal
 void printBoard(char **);
@@ -36,5 +36,14 @@ void nextGeneration(char **);
 
 // Count the number of alive neighbors of a cell
 int countNeighbors(char **, int, int);
+
+// Get the terminal size
+void getTerminalSize(int *, int *);
+
+// Read a text file and return its content
+char** readTextFile(char *);
+
+// Get the size of the board from a text file
+void getBoardSize(char *);
 
 #endif
