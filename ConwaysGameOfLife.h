@@ -8,13 +8,14 @@
 
 // The chance of a cell being alive when randomizing the board
 #define ALIVE_CHANCE 0.1
-// The time between generations in seconds
-#define GENERATION_RATE 1
 // The characters used to represent the cells
 #define ALIVE 'O'
 #define DEAD '.'
+
 // Global variables for the board size
 int BOARD_HEIGHT, BOARD_WIDTH;
+// The time between generations in microseconds
+int GENERATION_RATE = 10*100000;
 
 // Print the board to the terminal
 void printBoard(char **);

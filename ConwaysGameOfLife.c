@@ -6,8 +6,9 @@ int main(int argc, char *argv[]) {
     char **board;
 
     // Check if the user provided a file
-    if(argc==2){
+    if(argc==3){
         char *filename = argv[1];
+        GENERATION_RATE = atoi(argv[2])*100000; // Get the generation rate
         getBoardSize(filename); // Get the size of the board in the file
         board = readTextFile(filename);
         printBoard(board); // Print the board
@@ -19,7 +20,7 @@ int main(int argc, char *argv[]) {
     }
 
     while(1){
-        sleep(GENERATION_RATE); // Sleep to let the board printed
+        usleep(GENERATION_RATE); // Sleep to let the board printed
         system("clear"); // Clear the terminal
         nextGeneration(board); // Modify the board for the next generation
         printBoard(board); // Print the board
