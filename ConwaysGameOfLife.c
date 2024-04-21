@@ -109,35 +109,34 @@ void getTerminalSize(int *rows, int *cols) {
 }
 
 char** readTextFile(char* filename) {
-    FILE* file = fopen(filename, "r");
-    if (file == NULL) {
+    FILE* file = fopen(filename, "r"); // Open the file in read mode
+    if (file == NULL) { // Check if the file was opened
         fprintf(stderr, "Error : An error occured when opening the file %s\n", filename);
         exit(EXIT_FAILURE);
     }
-    char** board = (char**)malloc(BOARD_HEIGHT * sizeof(char*));
-    if (board == NULL) {
+    char** board = (char**)malloc(BOARD_HEIGHT * sizeof(char*)); // Allocate memory for the board
+    if (board == NULL) { // Check if the memory was allocated
         fprintf(stderr, "Error : Memory allocation failed\n");
         exit(EXIT_FAILURE);
     }
-    for (int i = 0; i < BOARD_HEIGHT; i++) {
-        board[i] = (char*)malloc(BOARD_WIDTH * sizeof(char));
-        if (board[i] == NULL) {
+    for (int i = 0; i < BOARD_HEIGHT; i++) { // Browse the lines
+        board[i] = (char*)malloc(BOARD_WIDTH * sizeof(char)); // Allocate memory for each row
+        if (board[i] == NULL) { // Check if the memory was allocated
             fprintf(stderr, "Error : Memory allocation failed\n");
             exit(EXIT_FAILURE);
         }
     }
-    char c;
-    int i = 0, j = 0;
-    while ((c = fgetc(file)) != EOF) {
-        if (c == '\n') {
-            i++;
-            j = 0;
-        } else if (i < BOARD_HEIGHT && j < BOARD_WIDTH) {
-            board[i][j] = c;
-            j++;
+    char c; // Variable to store the current character
+    int i = 0, j = 0; // Variables to store the current position
+    while ((c = fgetc(file)) != EOF) { // Browse the file
+        if (c == '\n') { // Check if the character is a new line
+            i++; // Increment the row
+            j = 0; // Reset the column
+        } else if (i < BOARD_HEIGHT && j < BOARD_WIDTH) { // Check if the position is in bounds
+            board[i][j] = c; // Store the character in the board
+            j++; // Increment the column
         }
     }
-
     fclose(file);
     return board;
 }
