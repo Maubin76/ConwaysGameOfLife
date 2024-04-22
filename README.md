@@ -58,4 +58,9 @@ I recommand some rate for the give files :
 ./ConwaysGameOfLife patterns/gliderShuttle.txt 1
 ````
 
+- we also have patterns that become stable after a certain generation :
+````bash
+./ConwaysGameOfLife patterns/stable.txt 1
+````
+
 You can visit the <a href="https://conwaylife.com/wiki/Category:Patterns">wiki</a> to discover and copy new structures. You can even try to discover new one, the game has been created in the 1970s but new patterns are still discovered nowadays ! 
