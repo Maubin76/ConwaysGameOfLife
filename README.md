@@ -47,7 +47,8 @@ I recommand some rate for the give files :
 ````
 
 - in order to exploit the glider, we can generate it. A generator is called "gun" and many types exist in order to have a different generation rate :  
-![image](https://github.com/Maubin76/ConwaysGameOfLife/assets/113935961/c19dacac-e77a-4c6a-bbee-bd8ba04b9abe)
+![68747470733a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f652f65352f476f73706572735f676c696465725f67756e2e676966](https://github.com/Maubin76/ConwaysGameOfLife/assets/113935961/0150045f-6a2c-44e2-b140-b186fadb20d6)
+
 ````bash
 ./ConwaysGameOfLife patterns/gliderGun.txt 1
 ````
