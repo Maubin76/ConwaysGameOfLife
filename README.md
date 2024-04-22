@@ -40,13 +40,13 @@ I recommand some rate for the give files :
 ./ConwaysGameOfLife patterns/oscilator.txt 10
 ````
 
-- this basic structure is one of the most important ones in this game. The group of cells flies accross the grid and doesn't stop. This pattern if used is all generators in order to create huge spaceships :
+- this basic structure is one of the most important ones in this game. The group of cells flies accross the grid and doesn't stop. This pattern if used is all generators in order to create huge spaceships :  
 ![image](https://github.com/Maubin76/ConwaysGameOfLife/assets/113935961/fa24e4db-1094-4233-a83d-86436ba49c79)
 ````bash
 ./ConwaysGameOfLife patterns/glider.txt 1
 ````
 
-- in order to exploit the glider, we can generate it. A generator is called "gun" and many types exist in order to have a different generation rate :
+- in order to exploit the glider, we can generate it. A generator is called "gun" and many types exist in order to have a different generation rate :  
 ![image](https://github.com/Maubin76/ConwaysGameOfLife/assets/113935961/c19dacac-e77a-4c6a-bbee-bd8ba04b9abe)
 ````bash
 ./ConwaysGameOfLife patterns/gliderGun.txt 1
