@@ -24,6 +24,8 @@ int main(int argc, char *argv[]) {
         system("clear"); // Clear the terminal
         nextGeneration(board); // Modify the board for the next generation
         printBoard(board); // Print the board
+        TOTAL_GENERATION++; // Increment the generation number
+        printf("T = %d\n", TOTAL_GENERATION); // Print the generation number
     }
 }
 

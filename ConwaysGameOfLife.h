@@ -16,6 +16,8 @@
 int BOARD_HEIGHT, BOARD_WIDTH;
 // The time between generations in microseconds
 int GENERATION_RATE = 10*100000;
+// Number of generation
+int TOTAL_GENERATION = 1;
 
 // Print the board to the terminal
 void printBoard(char **);
